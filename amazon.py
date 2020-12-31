@@ -28,8 +28,9 @@ for url,price_limit in url_to_price_limit.items():
 
     title = title_tag.getText().strip()
     price = float(price_tag.getText()[1:])
-
-    connection.sendmail(from_addr=my_email,to_addrs=to_email,msg=f"Subject: AMAZON PRICE ALERT!\n\n{title} is now ${price}!\n{url}".encode('utf-8'))
+    
+    if price <= price_limit:
+        connection.sendmail(from_addr=my_email,to_addrs=to_email,msg=f"Subject: AMAZON PRICE ALERT!\n\n{title} is now ${price}!\n{url}".encode('utf-8'))
 
 
 
